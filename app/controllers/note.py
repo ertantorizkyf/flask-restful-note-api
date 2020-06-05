@@ -28,7 +28,7 @@ class Note(Resource):
             db.session.commit()
         except:
             db.session.rollback()
-            return {'message': 'error while inserting note'}
+            return {'Message': 'error while inserting note'}
 
         response = Model.dumpIntoSchema(note)
         return response, 201
@@ -42,7 +42,7 @@ class NoteById(Resource):
             response = Model.dumpIntoSchema(note)
             return response, 200
 
-        return {'message': 'note with id {} doesn\'t exist'.format(id)}
+        return {'Message': 'note with id {} doesn\'t exist'.format(id)}
     
     def put(self, id):
         note = Model.getById(id)
@@ -55,12 +55,12 @@ class NoteById(Resource):
                 db.session.commit()
             except:
                 db.session.rollback()
-                return {'message': 'error while updating note'}
+                return {'Message': 'error while updating note'}
             
             response = Model.dumpIntoSchema(note)
             return response, 200
         
-        return {'message': 'note with id {} doesn\'t exist'.format(id)}
+        return {'Message': 'note with id {} doesn\'t exist'.format(id)}
     
     def delete(self, id):
         note = Model.getById(id)
@@ -71,9 +71,9 @@ class NoteById(Resource):
                 db.session.commit()
             except:
                 db.session.rollback()
-                return {'message': 'error while deleting note'}
+                return {'Message': 'error while deleting note'}
             
-            return {'message': 'delete success'}
+            return {'Message': 'delete success'}
 
-        return {'message': 'note with id {} doesn\'t exist'.format(id)}
+        return {'Message': 'note with id {} doesn\'t exist'.format(id)}
 
