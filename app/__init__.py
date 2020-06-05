@@ -1,5 +1,6 @@
 # package import
 from flask import Flask
+from flask_cors import CORS
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
@@ -29,6 +30,9 @@ def create_app(config_name):
 
     # init api
     api = Api(app)
+
+    # init CORS
+    CORS(app)
 
     # init routes
     from app.routes import routes
